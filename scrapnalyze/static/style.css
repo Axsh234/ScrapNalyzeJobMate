@@ -1,0 +1,395 @@
+/* ============================= */
+/*        Base Layout CSS        */
+/* ============================= */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body & Background */
+body {
+    font-family: 'Inter', sans-serif;
+    background: url('/static/images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header / Navbar */
+header {
+    background-color: rgba(47, 53, 66, 0.95);
+    padding: 1rem 2rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    user-select: none;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: #3742fa;
+    color: #fff;
+    outline: none;
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    color: #2f3542;
+}
+
+/* ============================= */
+/*         Dashboard Page CSS    */
+/* ============================= */
+
+/* Main container for content: translucent white box */
+main {
+    background: rgba(255, 255, 255, 0.85); /* translucent white */
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 2rem auto 3rem auto;
+    box-shadow: 0 8px 24px rgba(94, 53, 177, 0.3); /* subtle purple shadow */
+    color: #2f2f2f; /* dark text for readability */
+}
+
+/* Dashboard Title */
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #5e35b1; /* material dark purple */
+}
+
+/* Section Subtitles */
+h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #6a1b9a; /* slightly lighter purple */
+}
+
+/* Paragraph styling */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+/* Latest Jobs List */
+ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    color: #444;
+}
+
+ul li {
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+}
+
+
+
+/* ============================= */
+/*         Jobs Page CSS         */
+/* ============================= */
+.jobs-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #2f3542;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #3742fa;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-form input[type="text"] {
+    flex: 1 1 200px;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-search {
+    background-color: #3742fa;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-search:hover,
+.btn-search:focus {
+    background-color: #1e90ff;
+    outline: none;
+}
+
+.job-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 1.5rem;
+    padding: 0;
+}
+
+.job-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    color: #2f3542;
+    transition: box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+}
+
+.job-title a {
+    font-size: 1rem;
+}
+
+
+
+.job-link {
+    color: #3742fa;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.job-link:hover,
+.job-link:focus {
+    color: #1e90ff;
+    outline: none;
+    text-decoration: underline;
+}
+
+.job-meta span {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #57606f;
+}
+
+.no-jobs {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #888;
+    margin-top: 2rem;
+}
+
+/* ============================= */
+/*   Floating Circles Background */
+/* ============================= */
+.floating-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none; /* allow clicks to pass through */
+}
+
+.floating-bg span {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 15s linear infinite;
+    border-radius: 50%;
+    bottom: -150px;
+}
+
+.floating-bg span:nth-child(odd) {
+    background: rgba(0, 191, 255, 0.1);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-1000px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ============================= */
+/*           DNA Loader          */
+/* ============================= */
+.dna-loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.dna-loader span {
+    width: 10px;
+    height: 10px;
+    background: #1e90ff;
+    border-radius: 50%;
+    animation: dna-spin 1.2s infinite alternate;
+}
+
+.dna-loader span:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+@keyframes dna-spin {
+    0% {
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        transform: translateY(10px) scale(1.2);
+    }
+}
+
+/* ============================= */
+/*      Job Details Page CSS     */
+/* ============================= */
+
+/* ============================= */
+/*      Job Detail Page CSS      */
+/* ============================= */
+
+.job-detail-page {
+    max-width: 700px;
+    margin: 3rem auto 5rem auto;
+    background: #fff;
+    padding: 2.5rem 3rem;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    color: #2f3542;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+.job-detail-page h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #5b3e96; /* Dark material purple */
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+.job-info p {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: #444;
+}
+
+.job-info strong {
+    color: #3742fa;
+    font-weight: 600;
+}
+
+.job-info p + p {
+    margin-top: 0.5rem;
+}
+
+.job-info p:last-child {
+    white-space: pre-wrap; /* preserve line breaks if description has any */
+}
+
+.btn-apply {
+    display: inline-block;
+    background-color: #5b3e96; /* Dark material purple */
+    color: white;
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(91, 62, 150, 0.35);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 2rem;
+}
+
+.btn-apply:hover,
+.btn-apply:focus {
+    background-color: #7b57c7; /* lighter purple */
+    box-shadow: 0 8px 20px rgba(123, 87, 199, 0.6);
+    outline: none;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #5b3e96;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    border-color: #5b3e96;
+    outline: none;
+}
+/*--------------------------------------------------------------------------------------

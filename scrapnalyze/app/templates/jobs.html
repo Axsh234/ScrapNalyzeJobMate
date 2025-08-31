@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Job Listings{% endblock %}
+
+{% block content %}
+<section class="jobs-page">
+    <h2 class="page-title">Available Jobs</h2>
+
+    <form method="get" action="/jobs" class="search-form" autocomplete="off">
+        <!-- Title search with autocomplete -->
+        <input
+            type="text"
+            id="search-q"
+            name="q"
+            placeholder="Search by title..."
+            value="{{ q | default('') }}"
+            list="title-suggestions"
+            autocomplete="off"
+        />
+        <datalist id="title-suggestions"></datalist>
+
+        <!-- Location search with autocomplete -->
+        <input
+            type="text"
+            id="search-location"
+            name="location"
+            placeholder="Search by location..."
+            value="{{ location | default('') }}"
+            list="location-suggestions"
+            autocomplete="off"
+        />
+        <datalist id="location-suggestions"></datalist>
+
+        <!-- Sort options -->
+        <select name="sort_by" id="sort_by">
+            <option value="date_posted" {% if sort_by == "date_posted" %}selected{% endif %}>Date Posted</option>
+            <option value="title" {% if sort_by == "title" %}selected{% endif %}>Title</option>
+            <option value="salary" {% if sort_by == "salary" %}selected{% endif %}>Salary</option>
+            <option value="location" {% if sort_by == "location" %}selected{% endif %}>Location</option>
+        </select>
+
+        <select name="order" id="order">
+            <option value="desc" {% if order == "desc" %}selected{% endif %}>Descending</option>
+            <option value="asc" {% if order == "asc" %}selected{% endif %}>Ascending</option>
+        </select>
+
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    {% if jobs %}
+    <ul class="job-list">
+        {% for job in jobs %}
+            <li class="job-card">
+                <h4 class="job-title">
+                    <a href="/jobs/{{ job.id }}" class="job-link">{{ job.title }}</a>
+                </h4>
+                <div class="job-meta">
+                    <span><strong>Location:</strong> {{ job.location }}</span>
+                    <span><strong>Salary:</strong> {{ job.salary }}</span>
+                    <span><strong>Date Posted:</strong> {{ job.date_posted }}</span>
+                    <span><strong>Closing Date:</strong> {{ job.closing_date }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-jobs">No jobs found.</p>
+    {% endif %}
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Title autocomplete
+    const searchInput = document.getElementById("search-q");
+    const titleDatalist = document.getElementById("title-suggestions");
+
+    searchInput.addEventListener("input", async function () {
+        const query = this.value.trim();
+        if (query.length < 2) {
+            titleDatalist.innerHTML = "";
+            return;
+        }
+
+        try {
+            const response = await fetch(`/jobs/autocomplete?q=${encodeURIComponent(query)}`);
+            if (!response.ok) throw new Error("Failed to fetch");
+
+            const suggestions = await response.json();
+
+            titleDatalist.innerHTML = suggestions
+                .map(title => `<option value="${title}">`)
+                .join("");
+        } catch (error) {
+            console.error("Title autocomplete fetch error:", error);
+        }
+    });
+
+    // Location autocomplete
+    const locationInput = document.getElementById("search-location");
+    const locationDatalist = document.getElementById("location-suggestions");
+
+    locationInput.addEventListener("input", async function () {
+        const query = this.value.trim();
+        if (query.length < 2) {
+            locationDatalist.innerHTML = "";
+            return;
+        }
+
+        try {
+            const response = await fetch(`/jobs/autocomplete/location?q=${encodeURIComponent(query)}`);
+            if (!response.ok) throw new Error("Failed to fetch");
+
+            const suggestions = await response.json();
+
+            locationDatalist.innerHTML = suggestions
+                .map(location => `<option value="${location}">`)
+                .join("");
+        } catch (error) {
+            console.error("Location autocomplete fetch error:", error);
+        }
+    });
+});
+</script>
+{% endblock %}

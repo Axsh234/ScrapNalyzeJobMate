@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ job.title }} Details{% endblock %}
+
+{% block content %}
+<section class="job-detail-page">
+    <h2>{{ job.title }}</h2>
+
+    <div class="job-info">
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Salary:</strong> {{ job.salary }}</p>
+        <p><strong>Date Posted:</strong> {{ job.date_posted }}</p>
+        <p><strong>Closing Date:</strong> {{ job.closing_date }}</p>
+        <p><strong>Description:</strong></p>
+        <p>{{ job.description or 'No description available.' }}</p>
+    </div>
+
+    {% if job.link %}
+        <a href="{{ job.link }}" target="_blank" rel="noopener noreferrer" class="btn-apply">Apply Now</a>
+    {% endif %}
+
+    <a href="/jobs" class="btn-back">← Back to Listings</a>
+</section>
+{% endblock %}

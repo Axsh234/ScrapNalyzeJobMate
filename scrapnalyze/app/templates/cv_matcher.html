@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}CV Job Matcher{% endblock %}
+
+{% block content %}
+<h2>Matched Jobs for Your Skills</h2>
+<p>Skills submitted: {{ skills | join(', ') }}</p>
+<ul>
+    {% for job in matched_jobs %}
+        <li>{{ job.title }} - {{ job.location }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

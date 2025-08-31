@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+<p>Total Jobs: {{ job_count }}</p>
+<h3>Latest Jobs</h3>
+<ul>
+    {% for job in latest_jobs %}
+        <li>{{ job.title }} - {{ job.location }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
